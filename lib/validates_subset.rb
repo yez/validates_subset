@@ -26,10 +26,14 @@ module ActiveModel
       #   param: value <Variable>   - value of attribute to validate
       #   return: nil
       def validate_each(record, attribute, value)
-        add_errors_or_raise(options, record, attribute) unless value_to_test.is_a?(expected_type)
+        add_errors_or_raise(options, record, attribute) unless is_subset?(value, options[:superset])
       end
 
       private
+
+      def is_subset?(set, superset)
+        (set - superset) == []
+      end
 
       # Helper method to either add messages to the errors object
       # or raise an exception in :strict mode
@@ -55,6 +59,8 @@ module ActiveModel
       #           to raise an error or the actual error to raise
       #   return: custom error, ActiveModel::StrictValidationFailed, or nil
       def options_error(strict_error)
+        return if strict_error.nil?
+
         if strict_error == true
           ActiveModel::StrictValidationFailed
         elsif strict_error.try(:ancestors).try(:include?, Exception)

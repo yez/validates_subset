@@ -22,6 +22,42 @@ module ActiveModel
       end
 
       describe '#validate_each' do
+        let(:return_value) { nil }
+        subject { described_class.new(attributes: [:foo]) }
+
+        before do
+          allow(subject).to receive(:is_subset?)          { return_value }
+          allow(subject).to receive(:add_errors_or_raise) { nil }
+        end
+
+        it 'calls the validation logic' do
+          expect(subject).to receive(:is_subset?)
+          subject.validate_each(anything, anything, anything)
+        end
+
+        context 'validation passes' do
+          let(:return_value) { true }
+
+          it 'does not add errors on the validated model' do
+            expect(subject).to_not receive(:add_errors_or_raise)
+            subject.validate_each(anything, anything, anything)
+          end
+
+          it 'does not throw any errors' do
+            expect do
+              subject.validate_each(anything, anything, anything)
+            end.to_not raise_error
+          end
+        end
+
+        context 'validation fails' do
+          let(:return_value) { false }
+
+          it 'adds values to the errors on the validated model' do
+            expect(subject).to receive(:add_errors_or_raise)
+            subject.validate_each(anything, anything, anything)
+          end
+        end
       end
     end
 
