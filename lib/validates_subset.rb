@@ -11,8 +11,10 @@ module ActiveModel
       #                           the subset the attribute to validate against, etc.
       #   return: result of ActiveModel::Validations::EachValidator initialize
       def initialize(options)
+        options[:superset] = options.delete(:subset)
+
         merged_options = {
-          :message => "is expected to be a subset of #{ options[:subset] } and is not."
+          :message => "is expected to be a subset of #{ options[:superset] } and is not."
         }.merge(options)
 
         super(merged_options)
