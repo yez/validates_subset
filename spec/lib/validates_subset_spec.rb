@@ -62,6 +62,16 @@ module ActiveModel
     end
 
     describe '.validate_subset' do
+      class IncludedClass
+        include ActiveModel::Validations
+      end
+
+      it 'validates with SubsetValidator' do
+        included_class = IncludedClass
+        expect(included_class).to receive(:validates_with)
+          .with(SubsetValidator, anything)
+        included_class.validates_subset(anything, anything)
+      end
     end
   end
 end
