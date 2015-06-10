@@ -34,7 +34,7 @@ module ActiveModel
       private
 
       def is_subset?(set, superset)
-        (set - superset) == []
+        set.is_a?(Array) && (set & superset) == set
       end
 
       # Helper method to either add messages to the errors object

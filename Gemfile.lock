@@ -82,6 +82,3 @@ DEPENDENCIES
   guard-rspec
   pry
   rspec
-
-BUNDLED WITH
-   1.10.3
