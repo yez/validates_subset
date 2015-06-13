@@ -1,11 +1,11 @@
 require_relative '../../../lib/validates_subset'
 
 describe 'unless condition' do
-  subject { sub = TestIfTrue.new; sub.foo = value; sub }
+  subject { sub = TestUnlessTrue.new; sub.foo = value; sub }
 
   context 'if condition results in true' do
 
-    class TestIfTrue
+    class TestUnlessTrue
       include ActiveModel::Validations
 
       attr_accessor :foo
@@ -39,7 +39,7 @@ describe 'unless condition' do
   end
 
   context 'condition results is not true' do
-    class TestIfFalse
+    class TestUnlessFalse
       include ActiveModel::Validations
 
       attr_accessor :foo
@@ -47,7 +47,7 @@ describe 'unless condition' do
       validates_subset :foo, [1, 2, 3], unless: -> { false }
     end
 
-    subject { sub = TestIfFalse.new; sub.foo = value; sub }
+    subject { sub = TestUnlessFalse.new; sub.foo = value; sub }
 
     context 'value is a valid subset' do
       let(:value) { [1] }
