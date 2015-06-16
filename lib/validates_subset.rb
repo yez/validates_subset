@@ -65,7 +65,7 @@ module ActiveModel
 
         if strict_error == true
           ActiveModel::StrictValidationFailed
-        elsif strict_error.try(:ancestors).try(:include?, Exception)
+        elsif strict_error.ancestors.include?(Exception)
           strict_error
         end
       end
