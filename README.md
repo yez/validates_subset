@@ -1,17 +1,41 @@
-# validates_subset
+## validates_subset
 
-### Purpose
+![Build Status](https://travis-ci.org/yez/validates_subset.svg?branch=master)
 
-### Install
-Install on its own via `gem install validates_subset`
+### Subset validator for Rails
 
-Then in your ruby application:
+#### Purpose
+
+#### Usage
+
+##### With ActiveRecord
+
 ```ruby
-require 'validates_subset'
+class Foo < ActiveRecord::Base
+
+end
 ```
 
-Alternatively, add it to your Gemfile: 
+##### With ActiveModel
 
 ```ruby
-gem 'validates_type'
+class Bar
+
+end
+```
+
+##### With `validates` syntax
+
+```ruby
+class Banana < ActiveRecord::Base
+
+end
+```
+
+##### With multiple modifiers
+
+```ruby
+class Foo < ActiveRecord::Base
+
+end
 ```
