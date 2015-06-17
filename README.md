@@ -22,17 +22,14 @@ end
 
 # Example usage:
 foo = Foo.new(bar: [2])
-
 foo.valid?
 # => true
 
 foo = Foo.new(bar: [7])
-
 foo.valid?
 # => false
 
 foo = Foo.new(bar: 'banana')
-
 foo.valid?
 # => false
 ```
@@ -51,17 +48,14 @@ end
 
 # Example usage:
 bar = Bar.new(foo: ['a'])
-
 bar.valid?
 # => true
 
 bar = Bar.new(foo: ['q'])
-
 bar.valid?
 # => false
 
 bar = Bar.new(foo: 123)
-
 bar.valid?
 # => false
 ```
@@ -79,17 +73,14 @@ end
 
 # Example usage:
 banana = Banana.new(peel: ['yellow'])
-
 banana.valid?
 # => true
 
 banana = Banana.new(peel: ['brown']) # Who wants a brown peel? No one.
-
 banana.valid?
 # => false
 
 banana = Banana.new(peel: 123)
-
 banana.valid?
 # => false
 ```
