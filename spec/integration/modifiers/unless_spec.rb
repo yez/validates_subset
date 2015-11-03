@@ -22,7 +22,7 @@ describe 'unless condition' do
     end
 
     context 'value is not a valid subset' do
-      let(:value) { %i[a b c] }
+      let(:value) { [:a, :b, :c] }
 
       specify do
         expect(subject).to be_valid
@@ -58,7 +58,7 @@ describe 'unless condition' do
     end
 
     context 'value is not a valid subset' do
-      let(:value) { %i[a b c] }
+      let(:value) { [:a, :b, :c] }
 
       specify do
         expect(subject).to_not be_valid
