@@ -14,7 +14,7 @@ module ActiveModel
         options[:superset] = options.delete(:subset)
 
         merged_options = {
-          :message => "is expected to be a subset of #{ options[:superset] } and is not."
+          message: "is expected to be a subset of #{ options[:superset] } and is not."
         }.merge(options)
 
         super(merged_options)

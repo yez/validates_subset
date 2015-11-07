@@ -38,7 +38,7 @@ module ValidatesSubset
     # @subset
     #   return: <Hash>
     def subset
-      { :subset => @superset }
+      { subset: @superset }
     end
   end
 end
