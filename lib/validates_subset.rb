@@ -1,4 +1,7 @@
 require 'active_model'
+require 'active_support/i18n'
+
+I18n.load_path << File.dirname(__FILE__) + '/../locale/en.yml'
 
 require_relative './arguments'
 
@@ -14,7 +17,7 @@ module ActiveModel
         options[:superset] = options.delete(:subset)
 
         merged_options = {
-          message: "is expected to be a subset of #{ options[:superset] } and is not."
+          message: :subset
         }.merge(options)
 
         super(merged_options)
@@ -50,7 +53,7 @@ module ActiveModel
 
         raise error unless error.nil?
 
-        record.errors.add(attribute, options[:message])
+        record.errors.add(attribute, options[:message], subset: options[:superset])
       end
 
       # Helper method to return the base expected error:
