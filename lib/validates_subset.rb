@@ -53,7 +53,15 @@ module ActiveModel
 
         raise error unless error.nil?
 
-        record.errors.add(attribute, options[:message], subset: options[:superset])
+        value = record.send(attribute)
+
+        invalid_value = if value.is_a?(Array)
+          value - options[:superset]
+        else
+          value
+        end
+
+        record.errors.add(attribute, :subset, { subset: options[:superset], invalid_value: invalid_value }.merge(message: options[:message]))
       end
 
       # Helper method to return the base expected error:
