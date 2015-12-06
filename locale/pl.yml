@@ -1,0 +1,4 @@
+pl:
+  errors:
+    messages:
+      subset: musi być podzbiorem %{subset}.
