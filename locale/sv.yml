@@ -1,0 +1,4 @@
+sv:
+  errors:
+    messages:
+      subset: "förväntas vara en delmängd av %{subset}."
