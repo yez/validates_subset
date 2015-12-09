@@ -1,3 +1,6 @@
 module ValidatesSubset
-  VERSION = '1.0.2'.freeze
+  MAJOR = 1
+  MINOR = 1
+  TINY = 0
+  VERSION = [MAJOR, MINOR, TINY].join('.').freeze
 end
