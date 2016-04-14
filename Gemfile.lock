@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    validates_subset (1.1.0)
-      activemodel (>= 3.0)
+    validates_subset (1.2.0)
+      activemodel (>= 3.2)
 
 GEM
   remote: https://rubygems.org/

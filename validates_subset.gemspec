@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = s.files.grep(/^spec\//)
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.0'
 
-  s.add_dependency 'activemodel', '>= 3.0'
+  s.add_dependency 'activemodel', '>= 3.2'
 
   s.add_development_dependency 'bundler', '~> 1.3'
   s.add_development_dependency 'rake', '~> 10.0'
