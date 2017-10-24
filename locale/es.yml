@@ -1,0 +1,4 @@
+es:
+  errors:
+    messages:
+      subset: Se espera que sea un subset de %{subset} y no lo es.
