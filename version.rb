@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ValidatesSubset
   MAJOR = 1
   MINOR = 2

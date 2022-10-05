@@ -1,10 +1,15 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/validates_subset'
 
 describe 'if condition' do
-  subject { sub = TestIfTrue.new; sub.foo = value; sub }
+  subject do
+    sub = TestIfTrue.new
+    sub.foo = value
+    sub
+  end
 
   context 'if condition results in true' do
-
     class TestIfTrue
       include ActiveModel::Validations
 
@@ -22,7 +27,7 @@ describe 'if condition' do
     end
 
     context 'value is not a valid subset' do
-      let(:value) { [:a, :b, :c] }
+      let(:value) { %i[a b c] }
 
       specify do
         expect(subject).to_not be_valid
@@ -47,7 +52,11 @@ describe 'if condition' do
       validates_subset :foo, [1, 2, 3], if: -> { false }
     end
 
-    subject { sub = TestIfFalse.new; sub.foo = value; sub }
+    subject do
+      sub = TestIfFalse.new
+      sub.foo = value
+      sub
+    end
 
     let(:value) { anything }
 

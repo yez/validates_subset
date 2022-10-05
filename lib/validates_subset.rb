@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'active_model'
 require 'active_support/i18n'
 
-I18n.load_path << File.dirname(__FILE__) + '/../locale/en.yml'
-I18n.load_path << File.dirname(__FILE__) + '/../locale/pl.yml'
-I18n.load_path << File.dirname(__FILE__) + '/../locale/sv.yml'
+I18n.load_path << "#{File.dirname(__FILE__)}/../locale/en.yml"
+I18n.load_path << "#{File.dirname(__FILE__)}/../locale/pl.yml"
+I18n.load_path << "#{File.dirname(__FILE__)}/../locale/sv.yml"
 
 require_relative './arguments'
 
@@ -58,12 +60,13 @@ module ActiveModel
         value = record.send(attribute)
 
         invalid_value = if value.is_a?(Array)
-          value - options[:superset]
-        else
-          value
-        end
+                          value - options[:superset]
+                        else
+                          value
+                        end
 
-        record.errors.add(attribute, :subset, { subset: options[:superset], invalid_value: invalid_value }.merge(message: options[:message]))
+        record.errors.add(attribute, :subset,
+                          { subset: options[:superset], invalid_value: invalid_value }.merge(message: options[:message]))
       end
 
       # Helper method to return the base expected error:

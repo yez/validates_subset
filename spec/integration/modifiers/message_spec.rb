@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/validates_subset'
 
 class TestMessage
@@ -9,7 +11,11 @@ class TestMessage
 end
 
 describe 'custom messaging' do
-  subject { sub = TestMessage.new; sub.foo = value; sub }
+  subject do
+    sub = TestMessage.new
+    sub.foo = value
+    sub
+  end
 
   context 'value is a valid subset' do
     let(:value) { [1] }
@@ -20,7 +26,7 @@ describe 'custom messaging' do
   end
 
   context 'value is not a valid subset' do
-    let(:value) { [:a, :b, :c] }
+    let(:value) { %i[a b c] }
 
     specify do
       expect(subject).to_not be_valid
