@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'active_model'
 require 'active_support/i18n'
 
-I18n.load_path << File.dirname(__FILE__) + '/../locale/en.yml'
-I18n.load_path << File.dirname(__FILE__) + '/../locale/pl.yml'
-I18n.load_path << File.dirname(__FILE__) + '/../locale/sv.yml'
+I18n.load_path << "#{File.dirname(__FILE__)}/../locale/en.yml"
+I18n.load_path << "#{File.dirname(__FILE__)}/../locale/pl.yml"
+I18n.load_path << "#{File.dirname(__FILE__)}/../locale/sv.yml"
 
 require_relative './arguments'
 
@@ -33,12 +35,12 @@ module ActiveModel
       #   param: value <Variable>   - value of attribute to validate
       #   return: nil
       def validate_each(record, attribute, value)
-        add_errors_or_raise(options, record, attribute) unless is_subset?(value, options[:superset])
+        add_errors_or_raise(options, record, attribute) unless subset?(value, options[:superset])
       end
 
       private
 
-      def is_subset?(set, superset)
+      def subset?(set, superset)
         set.is_a?(Array) && (set & superset) == set
       end
 
@@ -58,12 +60,13 @@ module ActiveModel
         value = record.send(attribute)
 
         invalid_value = if value.is_a?(Array)
-          value - options[:superset]
-        else
-          value
-        end
+                          value - options[:superset]
+                        else
+                          value
+                        end
 
-        record.errors.add(attribute, :subset, { subset: options[:superset], invalid_value: invalid_value }.merge(message: options[:message]))
+        error_options = { subset: options[:superset], invalid_value: invalid_value }.merge(message: options[:message])
+        record.errors.add(attribute, :subset, error_options)
       end
 
       # Helper method to return the base expected error:

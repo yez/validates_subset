@@ -1,10 +1,15 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/validates_subset'
 
 describe 'unless condition' do
-  subject { sub = TestUnlessTrue.new; sub.foo = value; sub }
+  subject do
+    sub = TestUnlessTrue.new
+    sub.foo = value
+    sub
+  end
 
   context 'if condition results in true' do
-
     class TestUnlessTrue
       include ActiveModel::Validations
 
@@ -22,7 +27,7 @@ describe 'unless condition' do
     end
 
     context 'value is not a valid subset' do
-      let(:value) { [:a, :b, :c] }
+      let(:value) { %i[a b c] }
 
       specify do
         expect(subject).to be_valid
@@ -47,7 +52,11 @@ describe 'unless condition' do
       validates_subset :foo, [1, 2, 3], unless: -> { false }
     end
 
-    subject { sub = TestUnlessFalse.new; sub.foo = value; sub }
+    subject do
+      sub = TestUnlessFalse.new
+      sub.foo = value
+      sub
+    end
 
     context 'value is a valid subset' do
       let(:value) { [1] }
@@ -58,7 +67,7 @@ describe 'unless condition' do
     end
 
     context 'value is not a valid subset' do
-      let(:value) { [:a, :b, :c] }
+      let(:value) { %i[a b c] }
 
       specify do
         expect(subject).to_not be_valid

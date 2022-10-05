@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ValidatesSubset
   # Wrapper class for arguments consumed by validates_with
   class Arguments

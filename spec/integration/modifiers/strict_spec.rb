@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/validates_subset'
 
 describe 'strict' do
@@ -10,7 +12,11 @@ describe 'strict' do
       validates_subset :foo, [1, 2, 3], strict: true
     end
 
-    subject { sub = TestStrictDefault.new; sub.foo = value; sub }
+    subject do
+      sub = TestStrictDefault.new
+      sub.foo = value
+      sub
+    end
 
     context 'input is valid' do
       let(:value) { [1] }
@@ -48,7 +54,11 @@ describe 'strict' do
       validates_subset :foo, [1, 2, 3], strict: SomeStrictError
     end
 
-    subject { sub = TestStrictSpecific.new; sub.foo = value; sub }
+    subject do
+      sub = TestStrictSpecific.new
+      sub.foo = value
+      sub
+    end
 
     context 'input is valid' do
       let(:value) { [1] }

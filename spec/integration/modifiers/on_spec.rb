@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/validates_subset'
 
 describe 'on' do
@@ -11,7 +13,11 @@ describe 'on' do
     def special_method; end
   end
 
-  subject { sub = TestOn.new; sub.foo = value; sub }
+  subject do
+    sub = TestOn.new
+    sub.foo = value
+    sub
+  end
 
   it 'adds the options to the validation' do
     options = TestOn.validators_on(:foo).first.options

@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/arguments'
 
 module ValidatesSubset
   describe Arguments do
-
     let(:attribute_name) { :foo }
-    let(:superset)       { %w(bar qux) }
+    let(:superset)       { %w[bar qux] }
     let(:options)        { { extra: :options } }
 
     subject { described_class.new(attribute_name, superset, options) }

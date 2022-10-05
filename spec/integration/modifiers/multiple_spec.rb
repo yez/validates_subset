@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../lib/validates_subset'
 
 class TestMultiple
@@ -9,7 +11,11 @@ class TestMultiple
 end
 
 describe 'multiple validations' do
-  subject { sub = TestMultiple.new; sub.foo = value; sub }
+  subject do
+    sub = TestMultiple.new
+    sub.foo = value
+    sub
+  end
 
   context 'value is not blank' do
     context 'value is a valid subset' do
@@ -21,7 +27,7 @@ describe 'multiple validations' do
     end
 
     context 'value is not a valid subset' do
-      let(:value) { [:a, :b, :c] }
+      let(:value) { %i[a b c] }
 
       specify do
         expect(subject).to_not be_valid
