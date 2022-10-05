@@ -28,12 +28,12 @@ module ActiveModel
         subject { described_class.new(attributes: [:foo]) }
 
         before do
-          allow(subject).to receive(:is_subset?)          { return_value }
+          allow(subject).to receive(:subset?) { return_value }
           allow(subject).to receive(:add_errors_or_raise) { nil }
         end
 
         it 'calls the validation logic' do
-          expect(subject).to receive(:is_subset?)
+          expect(subject).to receive(:subset?)
           subject.validate_each(anything, anything, anything)
         end
 
